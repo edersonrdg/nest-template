@@ -2,6 +2,8 @@
 
 Api para sistema de inventário, com controle de permissões.
 
+<img src="https://i.ibb.co/XpRsXHr/diagrama-er-Stock.jpg" width="400"/> 
+
 ## Techs
 
  - [NestJs]()
