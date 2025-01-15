@@ -4,16 +4,20 @@ import { ProductModule } from './product/product.module';
 import { OrderModule } from './order/order.module';
 import { ConfigModule } from '@nestjs/config';
 import { PrismaModule } from './prisma/prisma.module';
+import { AuthModule } from './auth/auth.module';
+import config from './config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
+      load: [config],
       isGlobal: true,
     }),
     PrismaModule,
     UserModule,
     ProductModule,
     OrderModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],
