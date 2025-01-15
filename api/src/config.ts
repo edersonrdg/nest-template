@@ -1,0 +1,5 @@
+export default () => ({
+  port: parseInt(process.env.PORT, 10) || 3000,
+  jwtSecret: process.env.JWT_SECRET,
+  masterKey: process.env.MASTER_KEY,
+});
