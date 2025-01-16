@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 import { UserRepositoryPrismaDB } from '../../user/user.repository';
 import { SignInDto } from '../dto/sign-in.dto';
 import * as bcrypt from 'bcrypt';
@@ -17,7 +17,7 @@ export class SignInUseCase {
 
     if (!user || !bcrypt.compareSync(signInDto.password, user.password)) {
       // throw new InvalidCredentialsError();
-      throw new Error('Unauthorized');
+      throw new UnauthorizedException();
     }
 
     const payload = { sub: user.id, email: user.email };

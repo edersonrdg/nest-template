@@ -8,7 +8,7 @@ export class AuthController {
   private signInUseCase: SignInUseCase;
 
   @Post('/sign-in')
-  async create(@Body() signInDto: SignInDto) {
+  async login(@Body() signInDto: SignInDto) {
     return this.signInUseCase.execute(signInDto);
   }
 }
