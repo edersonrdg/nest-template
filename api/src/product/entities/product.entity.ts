@@ -1,1 +1,4 @@
-export class Product {}
+export class Product {
+  ref: string;
+  price: number;
+}
