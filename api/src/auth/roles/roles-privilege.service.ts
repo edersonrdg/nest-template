@@ -12,6 +12,7 @@ export class RolesPrivilegeControllService {
   private priority: number = 1;
 
   constructor() {
+    // Defines the role hierarchy. Ex: [minimum hierarchy, medium hierarchy ,maximum hierarchy]
     this.buildRoles([Role.Seller, Role.Stock, Role.Admin]);
   }
 
