@@ -6,6 +6,8 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
+    "changelog": "auto-changelog -p -u --commit-limit false",
+    "changelog-debug": "auto-changelog -p --template json --output changelog-data.json",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "up:db": "docker compose up -d",
@@ -28,6 +30,7 @@
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^10.0.0",
     "@prisma/client": "^6.2.1",
+    "auto-changelog": "^2.5.0",
     "bcrypt": "^5.1.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1"
