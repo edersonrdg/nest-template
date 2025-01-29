@@ -1,4 +1,3 @@
-import { Injectable } from '@nestjs/common';
 import { Role } from './roles.enum';
 
 interface IsAuthorizedParams {
@@ -6,8 +5,7 @@ interface IsAuthorizedParams {
   requiredRole: Role;
 }
 
-@Injectable()
-export class RolesPrivilegeControllService {
+class RolesPrivilegeControllService {
   private hierarchies: Array<Map<string, number>> = [];
   private priority: number = 1;
 
@@ -41,3 +39,6 @@ export class RolesPrivilegeControllService {
     return false;
   }
 }
+
+export const rolesPrivilegeControllService =
+  new RolesPrivilegeControllService();

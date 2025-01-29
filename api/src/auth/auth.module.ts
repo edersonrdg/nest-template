@@ -1,10 +1,10 @@
 import { Module, OnModuleInit } from '@nestjs/common';
 import { AuthController } from './auth.controller';
 import { UserRepositoryPrismaDB } from '../user/user.repository';
-import { SignInUseCase } from './usecases/sign-in.usecase';
 import { JwtModule } from '@nestjs/jwt';
 import { PrismaService } from 'src/prisma/prisma.service';
 import * as bcrypt from 'bcrypt';
+import { AuthService } from './auth.service';
 
 @Module({
   imports: [
@@ -15,7 +15,7 @@ import * as bcrypt from 'bcrypt';
     }),
   ],
   controllers: [AuthController],
-  providers: [UserRepositoryPrismaDB, SignInUseCase],
+  providers: [UserRepositoryPrismaDB, AuthService],
 })
 export class AuthModule implements OnModuleInit {
   constructor(private prismaService: PrismaService) {}
