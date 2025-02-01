@@ -14,38 +14,57 @@ datasource db {
 }
 
 model User {
-  id       String  @id @default(cuid())
+  id       String @id @default(cuid())
   name     String
-  email    String  @unique
+  email    String @unique
   password String
   role     Role
-  Order    Order[]
+
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @db.Timestamptz(3)
+
+  PurchaseOrder PurchaseOrder[]
+  SellOrder     SellOrder[]
 }
 
 model Product {
-  id    String  @id @default(cuid())
-  ref   String  @unique
+  id    String @id @default(cuid())
+  ref   String @unique
   price Float
-  Order Order[]
+
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @db.Timestamptz(3)
+
+  PurchaseOrder PurchaseOrder[]
+  SellOrder     SellOrder[]
 }
 
-model Order {
-  id        Int       @id @default(autoincrement())
-  value     Float
-  orderType OrderType
-  item      Product   @relation(fields: [itemId], references: [id])
-  itemId    String
-  user      User      @relation(fields: [userId], references: [id])
-  userId    String
+model PurchaseOrder {
+  id     Int    @id @default(autoincrement())
+  value  Float
+  itemId String
+  userId String
+
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+
+  item Product @relation(fields: [itemId], references: [id])
+  user User    @relation(fields: [userId], references: [id])
+}
+
+model SellOrder {
+  id     Int    @id @default(autoincrement())
+  value  Float
+  itemId String
+  userId String
+
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+
+  item Product @relation(fields: [itemId], references: [id])
+  user User    @relation(fields: [userId], references: [id])
 }
 
 enum Role {
   SELLER
   STOCK
   ADMIN
-}
-
-enum OrderType {
-  SELL
-  PURCHASE
 }
